@@ -31,7 +31,7 @@ const FEATURES = [
     icon: "\u{1F4B0}",
     title: "Earn while you sleep",
     description:
-      "Your Clone finds alpha, you approve the bets. You keep 80% of all earnings.",
+      "Your Clone finds alpha, you approve the bets. Profits flow directly to your wallet.",
   },
 ];
 
