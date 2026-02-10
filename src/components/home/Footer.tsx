@@ -54,7 +54,7 @@ export default function Footer() {
               <span className="text-lg font-bold font-heading">Questflow</span>
             </Link>
             <p className="text-xs text-[var(--color-text-tertiary)] leading-relaxed max-w-[200px]">
-              Your AI Clone works 24/7. You keep 80%.
+              Your AI Clone works 24/7 across prediction markets.
             </p>
           </div>
 

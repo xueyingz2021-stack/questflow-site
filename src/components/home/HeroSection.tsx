@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const PLATFORMS = ["Polymarket", "Kalshi", "Coinbase", "OKX", "Drift"];
+
 const ACTIVITY_LINES = [
-  { text: "Scanning Polymarket...", delay: 0 },
-  { text: "Found: Fed rate +25bp @ 68%", delay: 1.5 },
-  { text: "Confidence: 82% YES", delay: 3 },
-  { text: "Placing $50 bet...", delay: 4.5 },
-  { text: "+$31 potential return", delay: 6 },
+  { text: "Aggregating 10+ prediction markets...", delay: 0 },
+  { text: "Found: BTC $150k — Polymarket 62% vs Kalshi 58%", delay: 1.5 },
+  { text: "Arbitrage detected: +4% spread", delay: 3 },
+  { text: "Placing cross-market position...", delay: 4.5 },
+  { text: "+$47 locked-in profit", delay: 6 },
 ];
 
 export default function HeroSection() {
@@ -32,7 +34,7 @@ export default function HeroSection() {
             >
               <span className="inline-flex items-center gap-2 text-xs font-medium bg-[var(--color-brand-500)]/10 text-[var(--color-brand-300)] border border-[var(--color-brand-500)]/20 rounded-full px-4 py-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
-                Prediction Markets are live
+                10+ prediction markets aggregated
               </span>
             </motion.div>
 
@@ -43,10 +45,10 @@ export default function HeroSection() {
               transition={{ delay: 0.2 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.05] tracking-tight"
             >
-              Your AI Clone.
+              One AI Clone.
               <br />
               <span className="bg-gradient-to-r from-[var(--color-brand-300)] via-purple-400 to-[var(--color-brand-500)] bg-clip-text text-transparent">
-                Works 24/7.
+                Every Market.
               </span>
             </motion.h1>
 
@@ -57,9 +59,38 @@ export default function HeroSection() {
               transition={{ delay: 0.35 }}
               className="text-lg text-[var(--color-text-secondary)] max-w-lg leading-relaxed"
             >
-              Create an AI agent that discovers, analyzes, and acts on
-              opportunities across prediction markets — earning while you sleep.
+              Your AI agent aggregates Polymarket, Kalshi, Coinbase, OKX and
+              more — finding cross-market arbitrage and mispriced odds 24/7
+              while you sleep.
             </motion.p>
+
+            {/* Platform pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42 }}
+              className="flex flex-wrap gap-2"
+            >
+              {PLATFORMS.map((p, i) => (
+                <motion.span
+                  key={p}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.45 + i * 0.06 }}
+                  className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--color-border-default)] bg-white/[0.03] text-[var(--color-text-secondary)]"
+                >
+                  {p}
+                </motion.span>
+              ))}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.45 + PLATFORMS.length * 0.06 }}
+                className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--color-brand-500)]/20 bg-[var(--color-brand-500)]/5 text-[var(--color-brand-300)]"
+              >
+                + more
+              </motion.span>
+            </motion.div>
 
             {/* CTA */}
             <motion.div
@@ -90,9 +121,9 @@ export default function HeroSection() {
               className="flex gap-8 pt-4"
             >
               {[
-                { value: "1,247", label: "Creators" },
-                { value: "$124K", label: "Earned" },
-                { value: "127+", label: "Markets" },
+                { value: "10+", label: "Markets Aggregated" },
+                { value: "$124K", label: "Total Earned" },
+                { value: "24/7", label: "Autonomous" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="text-2xl font-bold font-heading">{stat.value}</p>
@@ -120,7 +151,7 @@ export default function HeroSection() {
                     <p className="text-sm font-semibold">Tars</p>
                     <p className="text-xs text-green-400 flex items-center gap-1">
                       <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
-                      Active &middot; 24/7 Autonomous
+                      Active &middot; Cross-Market Mode
                     </p>
                   </div>
                 </div>
@@ -134,7 +165,7 @@ export default function HeroSection() {
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[
                   { label: "Win Rate", value: "76%", color: "text-green-400" },
-                  { label: "Markets", value: "12", color: "text-[var(--color-brand-300)]" },
+                  { label: "Platforms", value: "10+", color: "text-[var(--color-brand-300)]" },
                   { label: "$CLONE", value: "$0.47", color: "text-amber-400" },
                 ].map((s) => (
                   <div key={s.label} className="rounded-xl bg-white/[0.03] border border-[var(--color-border-default)] p-3 text-center">
@@ -146,7 +177,7 @@ export default function HeroSection() {
 
               {/* Activity feed */}
               <div className="rounded-xl bg-black/30 border border-[var(--color-border-default)] p-4 font-mono text-xs space-y-2 h-36 overflow-hidden">
-                <p className="text-[var(--color-text-tertiary)] mb-2">// Clone Activity</p>
+                <p className="text-[var(--color-text-tertiary)] mb-2">// Cross-Market Scanner</p>
                 {ACTIVITY_LINES.map((line, i) => (
                   <motion.div
                     key={i}
@@ -165,8 +196,8 @@ export default function HeroSection() {
 
               {/* Supported platforms */}
               <div className="mt-4 flex items-center gap-2 flex-wrap">
-                <span className="text-[10px] text-[var(--color-text-tertiary)] uppercase tracking-wider">Powered by</span>
-                {["Polymarket", "Kalshi", "Coinbase", "OKX"].map((p) => (
+                <span className="text-[10px] text-[var(--color-text-tertiary)] uppercase tracking-wider">Aggregating</span>
+                {["Polymarket", "Kalshi", "Coinbase", "OKX", "Drift"].map((p) => (
                   <span key={p} className="text-[10px] text-[var(--color-text-tertiary)] bg-white/[0.04] border border-[var(--color-border-default)] rounded-md px-2 py-0.5">
                     {p}
                   </span>

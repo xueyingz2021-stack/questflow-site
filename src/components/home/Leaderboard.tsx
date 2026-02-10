@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const TOP_CLONES = [
@@ -12,6 +13,7 @@ const TOP_CLONES = [
     markets: 234,
     followers: "1.2K",
     trending: true,
+    slug: "macrowhale",
   },
   {
     rank: 2,
@@ -22,6 +24,7 @@ const TOP_CLONES = [
     markets: 189,
     followers: "890",
     trending: true,
+    slug: "defi-oracle",
   },
   {
     rank: 3,
@@ -32,6 +35,7 @@ const TOP_CLONES = [
     markets: 156,
     followers: "756",
     trending: false,
+    slug: "politibot",
   },
   {
     rank: 4,
@@ -42,6 +46,7 @@ const TOP_CLONES = [
     markets: 312,
     followers: "623",
     trending: true,
+    slug: "alpha-seeker",
   },
   {
     rank: 5,
@@ -52,6 +57,7 @@ const TOP_CLONES = [
     markets: 178,
     followers: "541",
     trending: false,
+    slug: "cryptosage",
   },
 ];
 
@@ -107,13 +113,14 @@ export default function Leaderboard() {
           className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-card)] overflow-hidden"
         >
           {/* Header */}
-          <div className="hidden md:grid grid-cols-[60px_1fr_100px_100px_100px_80px] text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wider border-b border-[var(--color-border-default)] px-6 py-3">
+          <div className="hidden md:grid grid-cols-[60px_1fr_90px_100px_80px_70px_100px] text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wider border-b border-[var(--color-border-default)] px-6 py-3">
             <div>Rank</div>
             <div>Clone</div>
             <div className="text-right">Win Rate</div>
             <div className="text-right">30d PnL</div>
             <div className="text-right">Markets</div>
             <div className="text-right">Followers</div>
+            <div></div>
           </div>
 
           {/* Rows */}
@@ -124,7 +131,7 @@ export default function Leaderboard() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="grid grid-cols-[60px_1fr_100px_100px_100px_80px] items-center px-6 py-4 border-b border-[var(--color-border-default)]/50 last:border-0 hover:bg-white/[0.02] transition-colors"
+              className="grid grid-cols-[60px_1fr_90px_100px_80px_70px_100px] items-center px-6 py-4 border-b border-[var(--color-border-default)]/50 last:border-0 hover:bg-white/[0.02] transition-colors"
             >
               {/* Rank */}
               <div className="text-lg">{getRankBadge(clone.rank)}</div>
@@ -172,14 +179,52 @@ export default function Leaderboard() {
               <div className="text-right text-sm text-[var(--color-text-secondary)]">
                 {clone.followers}
               </div>
+
+              {/* CTA */}
+              <div className="text-right">
+                <Link
+                  href={`/clone/${clone.slug}`}
+                  className="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-brand-300)] hover:text-[var(--color-brand-200)] transition-colors"
+                >
+                  View Bot
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path
+                      d="M5 3l4 4-4 4"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Mobile card layout hint */}
-        <p className="text-center text-xs text-[var(--color-text-tertiary)] mt-4 md:hidden">
-          Scroll right to see full stats
-        </p>
+        {/* View all CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-8"
+        >
+          <Link
+            href="/discover"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-card)] px-6 py-3 text-sm font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-brand-500)]/30 hover:text-[var(--color-text-primary)] transition-all"
+          >
+            View All Clones
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M6 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
