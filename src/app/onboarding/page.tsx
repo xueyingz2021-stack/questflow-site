@@ -38,7 +38,7 @@ export default function WelcomeStep() {
           Your AI Clone Works 24/7.
           <br />
           <span className="bg-gradient-to-r from-[var(--color-brand-300)] to-[var(--color-brand-500)] bg-clip-text text-transparent">
-            You Keep 80%.
+            You Keep the Profits.
           </span>
         </h1>
         <p className="text-base text-[var(--color-text-secondary)] max-w-md mx-auto leading-relaxed">
